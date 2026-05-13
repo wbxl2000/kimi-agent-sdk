@@ -340,7 +340,21 @@ jobs:
             fi
           }
 
-          for file in kimi-code-*.vsix; do
+          vsix_files=(
+            kimi-code-darwin-arm64.vsix
+            kimi-code-darwin-x64.vsix
+            kimi-code-linux-arm64.vsix
+            kimi-code-linux-x64.vsix
+            kimi-code-win32-arm64.vsix
+            kimi-code-win32-x64.vsix
+          )
+
+          for file in "${vsix_files[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "Missing expected .vsix file: $file" >&2
+              exit 1
+            fi
+
             echo "Publishing $file to VS Code Marketplace"
             publish_vsce "$file"
           done
@@ -374,7 +388,21 @@ jobs:
             fi
           }
 
-          for file in kimi-code-*.vsix; do
+          vsix_files=(
+            kimi-code-darwin-arm64.vsix
+            kimi-code-darwin-x64.vsix
+            kimi-code-linux-arm64.vsix
+            kimi-code-linux-x64.vsix
+            kimi-code-win32-arm64.vsix
+            kimi-code-win32-x64.vsix
+          )
+
+          for file in "${vsix_files[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "Missing expected .vsix file: $file" >&2
+              exit 1
+            fi
+
             echo "Publishing $file to Open VSX"
             publish_ovsx "$file"
           done
